@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Variável Imprevista · Vitória Ferreira</title>
+<meta name="description" content="Toda equação tem uma variável imprevista. A dela tem nome, sobrenome e um sorriso irritantemente calmo. Comédia romântica de Vitória Ferreira. Lançamento em 30/11.">
+<meta property="og:title" content="Variável Imprevista — Vitória Ferreira">
+<meta property="og:description" content="Toda equação tem uma variável imprevista. A dela tem nome, sobrenome e um sorriso irritantemente calmo. Lançamento em 30/11.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="book">
+<meta name="theme-color" content="#F7C65A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat+Brush&family=JetBrains+Mono:wght@400;600&family=Kaushan+Script&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+/* Layout: a mesa de trabalho do "aquário" — capa em 3D sobre código, depois o quadro branco das regras, cadernos dos dois, playlist e autora. */
+:root{
+  --mostarda:#F7C65A;
+  --laranja:#F29A4E;
+  --carmim:#A8123E;
+  --marinho:#15214A;
+  --papel:#FFFBF1;
+  --tinta:#2A2440;
+  --tinta-suave:#5E5670;
+  --linha:rgba(21,33,74,.14);
+  --f-logo:"Kaushan Script", "Brush Script MT", cursive;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-texto:"Literata", Georgia, "Times New Roman", serif;
+  --f-codigo:"JetBrains Mono", ui-monospace, Consolas, monospace;
+  --f-marcador:"Caveat Brush", "Comic Sans MS", cursive;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mostarda);color:var(--tinta);font-family:var(--f-texto);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--carmim);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+h1,h2,h3{font-family:var(--f-display);color:var(--marinho);line-height:1.05;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--f-codigo);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--carmim);font-weight:600}
+.code-c{color:var(--tinta-suave)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--mostarda) 88%, transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linha);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.logo{font-family:var(--f-logo);font-size:1.45rem;color:var(--marinho);text-decoration:none;white-space:nowrap}
+.logo span{color:var(--carmim)}
+.logo img{height:48px;width:auto;filter:drop-shadow(0 2px 3px rgba(21,33,74,.25));transition:transform .2s}
+.logo:hover img{transform:rotate(-2deg) scale(1.04)}
+.logo-rodape img{height:84px}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-family:var(--f-codigo);font-size:.8rem}
+.nav ul a{text-decoration:none;color:var(--marinho)}
+.nav ul a:hover{color:var(--carmim)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-display);font-weight:700;font-size:1rem;text-decoration:none;border-radius:999px;padding:13px 22px;border:2px solid var(--marinho);cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;line-height:1.1;text-align:center}
+.btn:hover{transform:translateY(-2px)}
+.btn-primario{background:var(--marinho);color:var(--papel);box-shadow:4px 4px 0 var(--carmim)}
+.btn-primario:hover{box-shadow:6px 6px 0 var(--carmim)}
+.btn-secundario{background:var(--papel);color:var(--marinho);box-shadow:4px 4px 0 var(--marinho)}
+.btn-pequeno{padding:8px 14px;font-size:.85rem;box-shadow:3px 3px 0 var(--carmim)}
+.btn[aria-disabled="true"]{background:transparent;color:var(--marinho);border-style:dashed;box-shadow:none;cursor:default}
+.btn[aria-disabled="true"]:hover{transform:none}
+@media (max-width:760px){.nav ul{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(90deg,var(--mostarda) 0 50%,var(--laranja) 50% 100%)}
+.codigo-fundo{position:absolute;inset:0;font-family:var(--f-codigo);font-size:clamp(.72rem,1.4vw,.95rem);line-height:1.9;color:rgba(21,33,74,.12);white-space:pre;pointer-events:none;overflow:hidden;padding:24px 0 0 12px;user-select:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:56px 72px}
+.hero-texto{min-width:0;display:flex;flex-direction:column;gap:22px}
+.hero h1{font-size:clamp(2.3rem,5.4vw,4.1rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;font-family:var(--f-logo);font-weight:400;color:var(--carmim);display:inline-block;transform:rotate(-2deg)}
+.hero .sub{font-size:clamp(1.1rem,2vw,1.3rem);margin:0;max-width:34ch;color:var(--tinta)}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:14px}
+.nota-amazon{font-family:var(--f-codigo);font-size:.78rem;color:var(--tinta-suave);margin:-6px 0 0}
+
+.contagem{background:var(--marinho);color:var(--papel);border-radius:14px;padding:16px 18px;font-family:var(--f-codigo);max-width:460px;box-shadow:6px 6px 0 rgba(21,33,74,.25)}
+.contagem .linha1{font-size:.78rem;color:#9FB0E0;margin-bottom:10px;overflow-wrap:anywhere}
+.contagem .linha1 b{color:var(--mostarda);font-weight:600}
+.contagem .num{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
+.contagem .num div{background:rgba(255,255,255,.06);border-radius:8px;padding:8px 4px}
+.contagem .num strong{display:block;font-size:clamp(1.5rem,4vw,2rem);font-variant-numeric:tabular-nums;color:var(--mostarda);line-height:1.1}
+.contagem .num span{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#C9D2F0}
+.contagem .pronto{font-family:var(--f-display);font-size:1.3rem;color:var(--mostarda)}
+
+/* livro 3D */
+.palco{perspective:1400px;display:flex;justify-content:center;align-items:center;min-width:0;padding-block:10px}
+.livro{position:relative;width:min(330px,72vw);aspect-ratio:2/3;transform-style:preserve-3d;transform:rotateY(-22deg) rotateX(4deg);transition:transform .9s cubic-bezier(.2,.7,.2,1);cursor:pointer;touch-action:pan-y}
+.livro .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:3px 8px 8px 3px;overflow:hidden}
+.livro .frente{box-shadow:24px 28px 40px rgba(21,33,74,.35)}
+.livro .frente img{width:100%;height:100%;object-fit:cover}
+.livro .frente::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25) 0,rgba(255,255,255,.18) 2.5%,transparent 6%,transparent 85%,rgba(255,255,255,.08));pointer-events:none}
+.livro .tras{transform:rotateY(180deg);background:var(--marinho);color:var(--papel);padding:9% 9%;display:flex;flex-direction:column;justify-content:center;gap:14px;font-size:clamp(.78rem,2.4vw,.92rem);line-height:1.5}
+.livro .tras .def{font-family:var(--f-texto)}
+.livro .tras .def b{color:var(--mostarda);font-family:var(--f-display);font-size:1.15em}
+.livro .tras blockquote{margin:0;font-style:italic;color:#D9DEF2;border-left:2px solid var(--carmim);padding-left:12px}
+.livro .tras cite{display:block;font-style:normal;font-family:var(--f-codigo);font-size:.75em;margin-top:6px;color:var(--mostarda)}
+.livro .lombada{position:absolute;top:0;bottom:0;left:0;width:34px;background:linear-gradient(90deg,#C08A2C,#E9B44C);transform:rotateY(-90deg);transform-origin:left;border-radius:3px 0 0 3px}
+.livro .paginas{position:absolute;top:1.5%;bottom:1.5%;right:0;width:32px;background:repeating-linear-gradient(90deg,#FFF8E8 0 2px,#EADFC6 2px 3px);transform:rotateY(90deg) translateZ(-1px);transform-origin:right}
+.livro.virado{transform:rotateY(160deg) rotateX(2deg)!important}
+.post-it{position:absolute;right:-8px;top:-18px;background:#FFE66B;color:var(--marinho);font-family:var(--f-marcador);font-size:1.15rem;padding:8px 14px;transform:rotate(6deg) translateZ(30px);box-shadow:3px 4px 8px rgba(0,0,0,.18);pointer-events:none;line-height:1.1}
+@keyframes flutua{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.palco-inner{animation:flutua 6s ease-in-out infinite;transform-style:preserve-3d}
+
+@media (max-width:860px){
+  .hero{background:linear-gradient(180deg,var(--mostarda) 0 45%,var(--laranja) 100%)}
+  .hero .wrap{grid-template-columns:1fr;padding-block:28px 48px;gap:28px}
+  .palco{order:-1}
+  .livro{width:min(240px,62vw)}
+  .hero .sub{max-width:none}
+  .hero .acoes .btn{flex:1 1 220px}
+}
+
+/* ---------- sinopse ---------- */
+.faixa{padding-block:72px}
+.sinopse{background:var(--papel);position:relative}
+.sinopse::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--linha) 1px,transparent 1px);background-size:100% 2.1rem;opacity:.45;pointer-events:none}
+.sinopse .wrap{position:relative;display:grid;grid-template-columns:240px 1fr;gap:48px}
+.sinopse aside{display:flex;flex-direction:column;gap:14px;align-self:start;position:sticky;top:90px}
+.sinopse h2{font-size:clamp(1.9rem,4vw,2.6rem)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-codigo);font-size:.75rem;border:1.5px solid var(--marinho);border-radius:999px;padding:4px 10px;color:var(--marinho);background:var(--papel)}
+.texto-sinopse{max-width:62ch;min-width:0;display:flex;flex-direction:column;gap:1.05em}
+.texto-sinopse p{margin:0}
+.texto-sinopse .gancho{font-family:var(--f-display);font-weight:700;font-size:clamp(1.3rem,2.6vw,1.65rem);line-height:1.25;color:var(--marinho)}
+.marca{background:linear-gradient(transparent 55%,rgba(247,198,90,.75) 55%);padding:0 2px}
+.marca-r{background:linear-gradient(transparent 55%,rgba(168,18,62,.22) 55%);padding:0 2px}
+.final{font-family:var(--f-marcador);font-size:1.6rem;color:var(--carmim);line-height:1.25}
+@media (max-width:760px){.sinopse .wrap{grid-template-columns:1fr;gap:22px}.sinopse aside{position:static}}
+
+/* ---------- quadro branco ---------- */
+.aquario{background:var(--marinho);color:var(--papel)}
+.aquario .cab{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.aquario h2{color:var(--papel);font-size:clamp(1.9rem,4vw,2.6rem)}
+.aquario .cab p{margin:6px 0 0;color:#C9D2F0;max-width:52ch}
+.placar{font-family:var(--f-codigo);font-size:.85rem;color:var(--mostarda);white-space:nowrap}
+.quadro{background:#FDFDFB;border:14px solid #B9BEC9;border-bottom-width:22px;border-radius:10px;box-shadow:inset 0 0 40px rgba(21,33,74,.08),0 20px 40px rgba(0,0,0,.3);padding:26px clamp(16px,4vw,40px) 30px;position:relative;color:var(--marinho)}
+.quadro::after{content:"";position:absolute;left:12%;right:12%;bottom:-20px;height:8px;background:#9097A6;border-radius:3px}
+.quadro h3{font-family:var(--f-marcador);font-weight:400;font-size:2.4rem;color:var(--marinho);letter-spacing:.04em;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px;margin-bottom:12px}
+.regras{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 40px}
+.regra{position:relative}
+.regra button{all:unset;cursor:pointer;display:block;width:100%;font-family:var(--f-marcador);font-size:clamp(1.25rem,2.6vw,1.5rem);line-height:1.3;padding:8px 4px;border-radius:6px;color:var(--marinho)}
+.regra button:focus-visible{outline:3px solid var(--carmim)}
+.regra button:hover{background:rgba(21,33,74,.04)}
+.regra .n{color:var(--carmim);margin-right:6px}
+.regra .t{position:relative;display:inline}
+.regra .t::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:3px;background:var(--carmim);transform:scaleX(0);transform-origin:left;transition:transform .45s ease;border-radius:2px}
+.regra.quebrada .t::after{transform:scaleX(1)}
+.regra .bilhete{display:block;font-family:var(--f-codigo);font-size:.8rem;color:var(--carmim);line-height:1.45;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease, opacity .3s ease, margin .3s;padding-left:26px}
+.regra.quebrada .bilhete{max-height:6em;opacity:1;margin:2px 0 6px}
+.regra.letra-dela button{color:var(--carmim)}
+.dica{margin-top:18px;font-family:var(--f-codigo);font-size:.8rem;color:var(--tinta-suave)}
+.apagador{position:absolute;right:16px;bottom:10px;font-family:var(--f-codigo);font-size:.75rem;background:#2B3352;color:#fff;border:0;border-radius:4px;padding:6px 10px;cursor:pointer}
+@media (max-width:700px){.regras{grid-template-columns:1fr}.apagador{position:static;margin-top:14px}}
+
+/* ---------- personagens ---------- */
+.dupla{background:var(--laranja)}
+.dupla h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:8px}
+.dupla .intro{margin:0 0 30px;max-width:56ch}
+.cartas{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.carta{perspective:1200px;min-width:0}
+.carta button{all:unset;display:block;width:100%;cursor:pointer}
+.carta-inner{position:relative;display:grid;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.carta.virada .carta-inner{transform:rotateY(180deg)}
+.lado{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;padding:26px 24px;display:flex;flex-direction:column;gap:12px;min-height:330px}
+.lado.verso{transform:rotateY(180deg)}
+.carta.r .lado.frente{background:var(--papel);border:2px solid var(--marinho);box-shadow:8px 8px 0 var(--carmim);background-image:linear-gradient(90deg,transparent 30px,rgba(168,18,62,.25) 30px 31px,transparent 31px),linear-gradient(var(--linha) 1px,transparent 1px);background-size:100% 100%,100% 1.9rem}
+.carta.a .lado.frente{background:#1E1B24;color:#EDE8DF;border:2px solid #1E1B24;box-shadow:8px 8px 0 var(--marinho)}
+.carta.a .lado.frente h3{color:#F3EEE5}
+.lado.verso{background:var(--marinho);color:var(--papel)}
+.carta .tag{font-family:var(--f-codigo);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em}
+.carta.r .tag{color:var(--carmim)}
+.carta.a .tag{color:var(--mostarda)}
+.carta h3{font-size:clamp(1.8rem,4vw,2.3rem)}
+.carta ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.98rem}
+.carta ul li::before{content:"> ";font-family:var(--f-codigo);color:var(--carmim)}
+.carta.a ul li::before{color:var(--mostarda)}
+.carta .virar{margin-top:auto;font-family:var(--f-codigo);font-size:.75rem;opacity:.75}
+.lado.verso blockquote{margin:0;font-family:var(--f-texto);font-style:italic;font-size:clamp(1.2rem,2.6vw,1.45rem);line-height:1.4}
+.lado.verso .quem{font-family:var(--f-codigo);font-size:.78rem;color:var(--mostarda)}
+.aposta{margin-top:30px;display:flex;align-items:center;gap:14px;background:var(--papel);border:2px dashed var(--marinho);border-radius:10px;padding:14px 18px;max-width:640px}
+.aposta .valor{font-family:var(--f-display);font-weight:800;font-size:1.8rem;color:var(--carmim);white-space:nowrap}
+.aposta p{margin:0;font-size:.98rem}
+@media (max-width:700px){.cartas{grid-template-columns:1fr}.lado{min-height:0}}
+
+/* ---------- galeria (perfil da Raquel) ---------- */
+.galeria{background:#17151C;color:#EDE8DF}
+.galeria .eyebrow{color:var(--mostarda)}
+.galeria h2{color:#F6F1E8;font-size:clamp(1.9rem,4vw,2.6rem);margin:8px 0 8px}
+.galeria .intro{margin:0 0 28px;max-width:56ch;color:#BDB5C6}
+.perfil{max-width:620px;margin:0 auto;background:#0F0E13;border:1px solid #2C2833;border-radius:22px;padding:22px clamp(12px,3vw,22px) 18px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.perfil-topo{display:flex;align-items:center;gap:18px}
+.avatar{width:84px;height:84px;border-radius:50%;padding:3px;background:conic-gradient(var(--mostarda),var(--laranja),var(--carmim),var(--mostarda));flex:none}
+.avatar img{width:100%;height:100%;border-radius:50%;border:3px solid #0F0E13;object-fit:cover}
+.perfil-dados{min-width:0;flex:1}
+.perfil-dados .user{font-family:var(--f-display);font-weight:700;font-size:1.15rem;color:#fff}
+.stats{display:flex;gap:18px;margin-top:6px;font-size:.85rem;color:#BDB5C6;flex-wrap:wrap}
+.stats b{display:block;color:#fff;font-family:var(--f-display);font-size:1.05rem}
+.bio{margin:14px 0 0;font-size:.95rem;line-height:1.45;color:#E4DEEA}
+.bio .nome{font-weight:600;color:#fff;display:block}
+.bio .loc{font-family:var(--f-codigo);font-size:.78rem;color:#9C93A8}
+.destaques{display:flex;gap:16px;margin:18px 0 16px;overflow-x:auto;padding-bottom:4px}
+.destaque{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.75rem;color:#E4DEEA;flex:none;width:72px;text-align:center}
+.destaque .anel{width:64px;height:64px;border-radius:50%;padding:3px;background:#2FB24C}
+.destaque .anel img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #0F0E13}
+.destaque.cinza .anel{background:#3A3542}
+.destaque.segredo .anel img{filter:blur(6px) brightness(.7)}
+.destaque:focus-visible .anel{outline:3px solid var(--mostarda);outline-offset:2px}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-top:1px solid #2C2833;padding-top:3px;margin-inline:calc(-1 * clamp(12px,3vw,22px))}
+.foto-g{all:unset;cursor:pointer;position:relative;aspect-ratio:4/5;overflow:hidden;background:#222}
+.foto-g img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .4s ease, filter .3s}
+.foto-g:hover img{transform:scale(1.04)}
+.foto-g:focus-visible{outline:3px solid var(--mostarda);outline-offset:-3px}
+.foto-g .cap{position:absolute;left:6px;bottom:6px;font-family:var(--f-codigo);font-size:.62rem;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:4px}
+.foto-g.spoiler img{filter:blur(14px) brightness(.6);transform:scale(1.15)}
+.foto-g.spoiler::after{content:"spoiler\A toque para ver";white-space:pre;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--f-marcador);font-size:1.15rem;color:var(--mostarda);line-height:1.2}
+.foto-g.spoiler.liberada img{filter:none;transform:none}
+.foto-g.spoiler.liberada::after{content:none}
+
+.visor{position:fixed;inset:0;z-index:50;background:rgba(8,7,10,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(12px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));touch-action:pan-y}
+.visor-palco{position:relative;max-width:min(440px,100%);width:100%;flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.visor-palco img{max-height:100%;max-width:100%;border-radius:12px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.visor-legenda{max-width:440px;width:100%;margin-top:12px;color:#F3EEE5;font-size:1rem;line-height:1.45;min-height:3em}
+.visor-legenda .cap-tag{font-family:var(--f-codigo);font-size:.72rem;color:var(--mostarda);display:block;margin-bottom:2px}
+.visor-btn{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:1.4rem;cursor:pointer;z-index:2}
+.visor-btn:hover{background:rgba(255,255,255,.25)}
+.visor-ant{left:max(10px,env(safe-area-inset-left,0px))}
+.visor-prox{right:max(10px,env(safe-area-inset-right,0px))}
+.visor-fechar{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));translate:none;z-index:3}
+.visor-cont{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));font-family:var(--f-codigo);font-size:.78rem;color:#BDB5C6}
+.aviso-spoiler{max-width:380px;background:#1F1C25;border:1px solid #3A3542;border-radius:16px;padding:24px;text-align:left;display:flex;flex-direction:column;gap:12px}
+.aviso-spoiler h3{color:#fff;font-size:1.3rem}
+.aviso-spoiler p{margin:0;color:#CFC7D9;font-size:.95rem}
+.aviso-spoiler .acoes-s{display:flex;gap:10px;flex-wrap:wrap}
+.aviso-spoiler .btn{font-size:.9rem;padding:10px 16px}
+@media (max-width:600px){.visor-btn.visor-ant,.visor-btn.visor-prox{display:none}.avatar{width:72px;height:72px}.perfil{border-radius:16px}}
+
+/* ---------- quiz ---------- */
+.quiz{background:var(--mostarda);position:relative;overflow:hidden}
+.quiz h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:8px 0 8px}
+.quiz .intro{margin:0 0 26px;max-width:56ch}
+.quiz-caixa{max-width:720px;background:var(--papel);border:2px solid var(--marinho);border-radius:14px;box-shadow:8px 8px 0 var(--marinho);padding:clamp(18px,4vw,32px)}
+.quiz-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--f-codigo);font-size:.78rem;color:var(--tinta-suave);margin-bottom:10px}
+.barra{height:6px;background:rgba(21,33,74,.12);border-radius:99px;overflow:hidden;margin-bottom:22px}
+.barra i{display:block;height:100%;width:0;background:var(--carmim);transition:width .35s ease}
+.quiz-pergunta{font-family:var(--f-display);font-weight:700;font-size:clamp(1.25rem,2.8vw,1.6rem);color:var(--marinho);line-height:1.2;margin:0 0 18px;text-wrap:balance}
+.opcoes{display:grid;gap:10px}
+.opcao{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:2px solid var(--marinho);border-radius:10px;background:#fff;font-size:1rem;line-height:1.4;transition:transform .12s, box-shadow .12s, background .12s}
+.opcao:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--marinho);background:#FFF6D9}
+.opcao:focus-visible{outline:3px solid var(--carmim);outline-offset:2px}
+.opcao .letra{font-family:var(--f-codigo);font-weight:600;color:var(--carmim);flex:none}
+.opcao.escolhida{background:var(--marinho);color:var(--papel)}
+.opcao.escolhida .letra{color:var(--mostarda)}
+.quiz-voltar{all:unset;cursor:pointer;font-family:var(--f-codigo);font-size:.78rem;color:var(--marinho);text-decoration:underline}
+.quiz-voltar[disabled]{opacity:.3;cursor:default}
+.resultado{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:start}
+.resultado .eu-sou{font-family:var(--f-codigo);font-size:.8rem;color:var(--carmim);text-transform:uppercase;letter-spacing:.08em}
+.resultado h3{font-family:var(--f-logo);font-weight:400;font-size:clamp(2.4rem,7vw,3.6rem);color:var(--marinho);line-height:1.05;margin:6px 0 12px}
+.resultado p{margin:0 0 14px}
+.resultado blockquote{margin:0 0 16px;font-style:italic;border-left:3px solid var(--carmim);padding-left:12px;color:var(--tinta)}
+.atributos{font-family:var(--f-codigo);font-size:.82rem;background:var(--marinho);color:#DCE3FA;border-radius:10px;padding:12px 14px;margin:0 0 18px;line-height:1.7;overflow-x:auto}
+.atributos b{color:var(--mostarda);font-weight:600}
+.resultado .acoes-q{display:flex;flex-wrap:wrap;gap:10px}
+.resultado .acoes-q .btn{font-size:.92rem;padding:11px 16px}
+.preview-story{width:100%;max-width:220px;aspect-ratio:9/16;border-radius:12px;box-shadow:0 14px 30px rgba(21,33,74,.3);background:var(--laranja);justify-self:center}
+.quiz-msg{font-family:var(--f-codigo);font-size:.78rem;color:var(--tinta-suave);margin-top:10px;min-height:1.2em}
+.pct{font-family:var(--f-codigo);font-size:.78rem;color:var(--tinta-suave);margin:-4px 0 16px}
+@media (max-width:700px){.resultado{grid-template-columns:1fr}.preview-story{max-width:200px;order:-1}.resultado .acoes-q .btn{flex:1 1 140px}}
+
+/* ---------- playlist ---------- */
+.playlist{background:var(--papel)}
+.playlist .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+.playlist h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:8px 0 12px}
+.playlist p{margin:0 0 18px;max-width:46ch}
+.vinil-box{position:relative;min-width:0}
+.vinil{position:absolute;width:62%;aspect-ratio:1;border-radius:50%;right:-6%;top:50%;translate:0 -50%;background:repeating-radial-gradient(circle,#1b1b22 0 2px,#26262f 2px 4px);box-shadow:0 10px 30px rgba(0,0,0,.25);animation:gira 8s linear infinite;animation-play-state:paused;z-index:0}
+.vinil::after{content:"";position:absolute;inset:36%;border-radius:50%;background:var(--carmim) url("img/capa.jpg") center/cover;border:6px solid var(--mostarda)}
+.vinil-box.tocando .vinil{animation-play-state:running}
+@keyframes gira{to{rotate:360deg}}
+.spotify{position:relative;z-index:1;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(21,33,74,.25);background:var(--marinho);width:88%}
+.spotify iframe{display:block;width:100%;height:380px;border:0}
+@media (max-width:860px){.playlist .wrap{grid-template-columns:1fr}.spotify{width:100%}.vinil{display:none}.spotify iframe{height:352px}}
+
+/* ---------- skoob ---------- */
+.skoob{background:var(--carmim);color:var(--papel);text-align:left}
+.skoob .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center}
+.skoob h2{color:var(--papel);font-size:clamp(1.9rem,4.4vw,2.8rem)}
+.skoob p{margin:12px 0 0;max-width:52ch;color:#FCE3EA}
+.skoob .passos{font-family:var(--f-codigo);font-size:.85rem;margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;color:#FFE8EE}
+.skoob .passos b{color:var(--mostarda)}
+.skoob .estrelas{font-size:2.2rem;letter-spacing:.12em;color:var(--mostarda);margin-bottom:14px;display:flex;gap:4px}
+.skoob .estrelas button{all:unset;cursor:pointer;transition:transform .15s}
+.skoob .estrelas button:hover,.skoob .estrelas button:focus-visible{transform:scale(1.2)}
+.skoob .estrelas button.off{opacity:.35}
+.skoob .btn{background:var(--papel);color:var(--carmim);border-color:var(--papel);box-shadow:5px 5px 0 var(--marinho)}
+.skoob .col-cta{display:flex;flex-direction:column;align-items:flex-start}
+.skoob .feedback{font-family:var(--f-marcador);font-size:1.3rem;min-height:1.6em;color:var(--mostarda)}
+@media (max-width:760px){.skoob .wrap{grid-template-columns:1fr}.skoob .btn{width:100%}}
+
+/* ---------- autora ---------- */
+.autora{background:var(--mostarda)}
+.autora .wrap{display:grid;grid-template-columns:360px 1fr;gap:48px;align-items:center}
+.foto{position:relative;transform:rotate(-2.5deg);background:#fff;padding:12px 12px 52px;box-shadow:0 18px 36px rgba(21,33,74,.25);max-width:360px}
+.foto{align-self:center;height:auto}
+.foto img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 18%}
+.foto figcaption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:var(--f-marcador);font-size:1.4rem;color:var(--marinho)}
+.foto::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:30px;translate:-50% 0;rotate:3deg;background:rgba(255,230,107,.85)}
+.autora h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:8px 0 14px}
+.autora p{margin:0 0 14px;max-width:56ch}
+.redes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+@media (max-width:760px){.autora .wrap{grid-template-columns:1fr;gap:34px}.foto{max-width:280px;margin:0 auto}}
+
+/* ---------- aviso + rodapé ---------- */
+.aviso{background:var(--papel);padding-block:40px}
+details{border:2px solid var(--marinho);border-radius:10px;background:var(--papel);max-width:760px}
+summary{cursor:pointer;padding:16px 20px;font-family:var(--f-display);font-weight:700;color:var(--marinho);list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-codigo)}
+details[open] summary::after{content:"–"}
+details .corpo{padding:0 20px 18px}
+details ul{margin:0 0 12px;padding-left:20px}
+details em{color:var(--carmim)}
+footer{background:var(--marinho);color:#C9D2F0;font-family:var(--f-codigo);font-size:.78rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-block:28px calc(28px + env(safe-area-inset-bottom,0px))}
+footer .logo{color:var(--papel);font-size:1.3rem}
+
+/* barra fixa no celular */
+.barra-cel{display:none}
+@media (max-width:760px){
+  .barra-cel{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;padding:10px var(--gutter-r) calc(10px + env(safe-area-inset-bottom,0px)) var(--gutter);background:color-mix(in srgb,var(--marinho) 94%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .3s ease}
+  .barra-cel.visivel{transform:none}
+  .barra-cel .btn{flex:1;padding:11px 10px;font-size:.9rem;box-shadow:none}
+  .barra-cel .btn-secundario{background:var(--mostarda);border-color:var(--mostarda)}
+  .barra-cel .btn[aria-disabled="true"]{color:var(--papel);border-color:var(--papel)}
+  footer .wrap{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+}
+
+/* revelar ao rolar (começa visível; só anima se JS ativo) */
+.js .revela{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+.js .revela.ok{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .revela{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="#topo"><img src="img/logo-pequena.png" alt="Variável Imprevista" width="360" height="186"></a>
+    <ul>
+      <li><a href="#livro">o_livro</a></li>
+      <li><a href="#regras">as_regras</a></li>
+      <li><a href="#fotos">fotos</a></li>
+      <li><a href="#dupla">(R) &amp; (A)</a></li>
+      <li><a href="#quiz">quiz</a></li>
+      <li><a href="#playlist">playlist</a></li>
+      <li><a href="#autora">autora</a></li>
+    </ul>
+    <a class="btn btn-primario btn-pequeno" href="#avaliar">Avaliar no Skoob</a>
+  </div>
+</nav>
+
+<header class="hero" id="topo">
+  <div class="codigo-fundo" aria-hidden="true" id="codigoFundo"></div>
+  <div class="wrap">
+    <div class="hero-texto">
+      <span class="eyebrow">Comédia romântica · 18+ · Lançamento 30/11</span>
+      <h1>Toda equação tem uma variável <em>imprevista.</em></h1>
+      <p class="sub">A dela tem nome, sobrenome e um sorriso irritantemente calmo.</p>
+
+      <div class="contagem" id="contagem" aria-live="polite">
+        <div class="linha1"><span class="code-c">&gt;&gt;&gt;</span> lancamento = <b>datetime(2026, 11, 30)</b></div>
+        <div class="num" id="contagemNum">
+          <div><strong id="cD">--</strong><span>dias</span></div>
+          <div><strong id="cH">--</strong><span>horas</span></div>
+          <div><strong id="cM">--</strong><span>min</span></div>
+          <div><strong id="cS">--</strong><span>seg</span></div>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <a class="btn btn-primario js-amazon" href="#" aria-disabled="true">Em breve na Amazon</a>
+        <a class="btn btn-secundario" href="https://www.skoob.com.br/pt/book/122718148" target="_blank" rel="noopener">Marcar “Quero ler” no Skoob</a>
+      </div>
+      <p class="nota-amazon js-nota-amazon">O e-book chega à Amazon em 30 de novembro. Enquanto isso, salve na sua estante do Skoob.</p>
+    </div>
+
+    <div class="palco">
+      <div class="palco-inner">
+        <div class="livro" id="livro" role="button" tabindex="0" aria-label="Virar o livro para ler a contracapa" aria-pressed="false">
+          <div class="lombada"></div>
+          <div class="paginas"></div>
+          <div class="face frente"><img src="img/capa.jpg" alt="Capa de Variável Imprevista: Raquel, de blazer vermelho, e Alistair, de camisa branca, sentados de costas um para o outro sobre um notebook, com um gato laranja entre eles e linhas de código ao fundo." width="900" height="1350"></div>
+          <div class="face tras">
+            <p class="def"><b>variável imprevista</b> <i>(s.f.)</i>: aquilo que o sistema não tem a menor chance de controlar. <i>Ver também:</i> ele.</p>
+            <blockquote>“Não sei dizer a hora, nem o lugar, nem o olhar, nem as palavras que lançaram as bases. Faz muito tempo. Eu já estava no meio antes de saber que tinha começado.”<cite>— Jane Austen, Orgulho e Preconceito</cite></blockquote>
+          </div>
+          <div class="post-it" id="postit">toque pra virar ↻</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="sinopse faixa" id="livro">
+  <div class="wrap">
+    <aside>
+      <span class="eyebrow">// sinopse</span>
+      <h2>Duas pessoas. Um projeto. Zero chance de dar certo.</h2>
+      <div class="chips">
+        <span class="chip">rivals to lovers</span>
+        <span class="chip">workplace romance</span>
+        <span class="chip">farsa de equipe</span>
+        <span class="chip">Toronto</span>
+        <span class="chip">IA &amp; código</span>
+        <span class="chip">duplo POV</span>
+      </div>
+    </aside>
+    <div class="texto-sinopse revela">
+      <p class="gancho">Raquel Queiroz gosta de ter tudo sob controle.</p>
+      <p>Construiu a própria vida com a precisão de quem não deixa nada ao acaso. Trabalha demais, confia pouco e não tem tempo para distrações. Muito menos para <span class="marca-r">homens que acham que sabem mais do que ela.</span></p>
+      <p>Alistair Ames também tem seus métodos. Especialista em inteligência artificial, é metódico, observador e atento a detalhes que a maioria das pessoas nem percebe. Tem o hábito irritante de <span class="marca">registrar tudo</span>, pensar demais e manter uma distância confortável daquilo que não consegue explicar.</p>
+      <p>Os dois só não esperavam ter que dividir o mesmo projeto.</p>
+      <p>Quando uma parceria profissional coloca Raquel e Alistair frente a frente, trabalhar juntos se torna uma missão quase impossível. Entre reuniões intermináveis, provocações, ideias brilhantes e <span class="marca">um quadro branco que começa a acumular regras</span> para manter a convivência minimamente civilizada, a rivalidade dá lugar a uma intimidade que nenhum dos dois estava preparado para enfrentar.</p>
+      <p>O problema é que algumas coisas não cabem em planilhas. Outras não obedecem a regras. E certas pessoas conseguem atravessar defesas que levaram anos para serem construídas.</p>
+      <p>Raquel sabe exatamente o que fazer quando um sistema apresenta uma variável inesperada.</p>
+      <p class="final">Só não faz ideia do que fazer com Alistair Ames.</p>
+    </div>
+  </div>
+</section>
+
+<section class="aquario faixa" id="regras">
+  <div class="wrap">
+    <div class="cab">
+      <div>
+        <span class="eyebrow" style="color:var(--mostarda)">// sala de reunião, apelidada de “aquário”</span>
+        <h2>As regras do quadro branco</h2>
+        <p>Para sobreviver ao projeto, os dois escreveram regras. Toque em cada uma e descubra se ela resistiu à convivência.</p>
+      </div>
+      <div class="placar" id="placar">regras_quebradas = 0 / 11</div>
+    </div>
+
+    <div class="quadro revela">
+      <h3>REGRAS</h3>
+      <ol class="regras" id="listaRegras"></ol>
+      <p class="dica">as regras em vermelho foram escritas na letra dela.</p>
+      <button class="apagador" id="apagador" type="button">apagar o quadro</button>
+    </div>
+  </div>
+</section>
+
+<section class="galeria faixa" id="fotos">
+  <div class="wrap">
+    <span class="eyebrow">// o celular dela</span>
+    <h2>As fotos da Raquel (e do Ali)</h2>
+    <p class="intro">O perfil que a Raquel jura que é só pros amigos. Toque numa foto para ver em tela cheia e deslize para passar.</p>
+
+    <div class="perfil">
+      <div class="perfil-topo">
+        <div class="avatar"><img src="img/galeria/avatar-raquel.jpg" alt="Foto de perfil da Raquel, revirando os olhos" width="240" height="240" loading="lazy"></div>
+        <div class="perfil-dados">
+          <div class="user">raquel.queiroz</div>
+          <div class="stats">
+            <span><b>11</b>regras</span>
+            <span><b>1</b>aposta</span>
+            <span><b>0</b>paciência</span>
+          </div>
+        </div>
+      </div>
+      <p class="bio">
+        <span class="nome">Raquel Queiroz</span>
+        líder de projeto · Chef's Café. não me chame de auxiliar.<br>
+        <span class="loc">Minas Gerais → Toronto · commits às 3h</span>
+      </p>
+
+      <div class="destaques">
+        <button class="destaque" type="button" data-album="meninas">
+          <span class="anel"><img src="img/galeria/story-margaritas.jpg" alt="" loading="lazy"></span>
+          ★ meninas
+        </button>
+        <button class="destaque cinza" type="button" data-album="trabalho">
+          <span class="anel"><img src="img/galeria/3h12.jpg" alt="" loading="lazy"></span>
+          aquário
+        </button>
+        <button class="destaque cinza" type="button" data-album="eventos">
+          <span class="anel"><img src="img/galeria/royal-york-sorriso.jpg" alt="" loading="lazy"></span>
+          eventos
+        </button>
+        <button class="destaque cinza segredo" type="button" data-album="segredo" aria-label="Destaque secreto (spoiler)">
+          <span class="anel"><img src="img/galeria/beijo.jpg" alt="" loading="lazy"></span>
+          ???
+        </button>
+      </div>
+
+      <div class="grade" id="grade"></div>
+    </div>
+  </div>
+</section>
+
+<section class="dupla faixa" id="dupla">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--marinho)">// duplo ponto de vista</span>
+    <h2>O log dela. O caderno dele.</h2>
+    <p class="intro">Os capítulos se alternam entre Raquel e Alistair. Toque nos cadernos para ler uma frase de cada um.</p>
+    <div class="cartas">
+      <div class="carta r revela">
+        <button type="button" aria-pressed="false" aria-label="Virar o cartão de Raquel">
+          <div class="carta-inner">
+            <div class="lado frente">
+              <span class="tag">log.raquel · arquitetura</span>
+              <h3>Raquel Queiroz</h3>
+              <ul>
+                <li>líder do projeto, não aceita meio crédito</li>
+                <li>refaz a fila de pedidos às 3h da manhã</li>
+                <li>blazer vermelho, caneta na mão, coque com lápis</li>
+                <li>mantém um log dos hábitos irritantes dele</li>
+              </ul>
+              <span class="virar">toque para virar ↻</span>
+            </div>
+            <div class="lado verso">
+              <span class="tag">(R) disse:</span>
+              <blockquote>“Então aprende.”</blockquote>
+              <span class="quem">— capítulo 3, quando ele diz que não sabe fingir que concorda</span>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="carta a revela">
+        <button type="button" aria-pressed="false" aria-label="Virar o cartão de Alistair">
+          <div class="carta-inner">
+            <div class="lado frente">
+              <span class="tag">caderno preto · lápis · letra inclinada</span>
+              <h3>Alistair Ames</h3>
+              <ul>
+                <li>especialista em inteligência artificial</li>
+                <li>anota tudo, inclusive o que não devia</li>
+                <li>mangas dobradas, tatuagem no antebraço</li>
+                <li>recusa a cabeceira da mesa</li>
+              </ul>
+              <span class="virar">toque para virar ↻</span>
+            </div>
+            <div class="lado verso">
+              <span class="tag">(A) disse:</span>
+              <blockquote>“O modelo é meu. O botão é dela.”</blockquote>
+              <span class="quem">— capítulo 6, na frente dos investidores</span>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="aposta revela">
+      <span class="valor">US$ 20</span>
+      <p>É quanto a Amelia, melhor amiga da Raquel, aposta que ela vai cair por ele. Você apostaria?</p>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto em tela cheia" hidden>
+  <span class="visor-cont" id="visorCont"></span>
+  <button class="visor-btn visor-fechar" id="visorFechar" type="button" aria-label="Fechar">✕</button>
+  <div class="visor-palco" id="visorPalco">
+    <button class="visor-btn visor-ant" id="visorAnt" type="button" aria-label="Foto anterior">‹</button>
+    <img id="visorImg" alt="">
+    <button class="visor-btn visor-prox" id="visorProx" type="button" aria-label="Próxima foto">›</button>
+  </div>
+  <div class="visor-legenda" id="visorLegenda" aria-live="polite"></div>
+</div>
+
+<section class="quiz faixa" id="quiz">
+  <div class="wrap">
+    <span class="eyebrow">// quiz</span>
+    <h2>Qual personagem de Variável Imprevista é você?</h2>
+    <p class="intro">Seis perguntas, nenhum spoiler. No fim, você ganha uma imagem pronta para postar nos stories.</p>
+    <div class="quiz-caixa" id="quizCaixa" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="playlist faixa" id="playlist">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">// trilha sonora</span>
+      <h2>A playlist do livro</h2>
+      <p>As músicas que tocaram enquanto a história era escrita. Dá play e lê junto: é o jeito oficial de entrar no aquário.</p>
+      <a class="btn btn-primario" href="https://open.spotify.com/playlist/628uDjw9IsNo77QCEK5UEp" target="_blank" rel="noopener">Abrir no Spotify</a>
+    </div>
+    <div class="vinil-box" id="vinilBox">
+      <div class="vinil" aria-hidden="true"></div>
+      <div class="spotify">
+        <iframe title="Playlist de Variável Imprevista no Spotify" src="https://open.spotify.com/embed/playlist/628uDjw9IsNo77QCEK5UEp?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skoob faixa" id="avaliar">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--mostarda)">// para leitoras</span>
+      <h2>Sua avaliação muda o destino de um livro independente.</h2>
+      <p>Cada “quero ler”, cada estrela e cada resenha no Skoob ajudam <i>Variável Imprevista</i> a chegar em mais leitoras. Leva um minuto.</p>
+      <ul class="passos">
+        <li><b>1.</b> abra a página do livro no Skoob</li>
+        <li><b>2.</b> adicione à estante como “quero ler” (ou “lido”)</li>
+        <li><b>3.</b> já leu? deixe suas estrelas e uma resenha</li>
+      </ul>
+    </div>
+    <div class="col-cta">
+      <div class="estrelas" id="estrelas" role="group" aria-label="Quantas estrelas você daria?"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <a class="btn" href="https://www.skoob.com.br/pt/book/122718148" target="_blank" rel="noopener">Ir para o Skoob</a>
+    </div>
+  </div>
+</section>
+
+<section class="autora faixa" id="autora">
+  <div class="wrap">
+    <figure class="foto revela" style="margin:0">
+      <img src="img/autora.jpg" alt="Vitória Ferreira, de blusa preta e braços cruzados, sorrindo, com livros e uma vela ao fundo." width="640" height="800" loading="lazy">
+      <figcaption>a autora ♡</figcaption>
+    </figure>
+    <div>
+      <span class="eyebrow">// sobre a autora</span>
+      <h2>Vitória Ferreira</h2>
+      <p>Nasceu no interior de Minas Gerais, onde descobriu duas paixões que pareciam não ter nada a ver uma com a outra: a literatura e a tecnologia. Formada em Sistemas de Informação, encontrou na leitura o lugar onde as duas se combinam perfeitamente.</p>
+      <p>Depois de muitos anos lendo histórias incríveis, finalmente criou coragem para escrever a sua. <i>Variável Imprevista</i> é o seu primeiro livro.</p>
+      <div class="redes">
+        <a class="btn btn-primario" href="https://www.tiktok.com/@vitoria.epub" target="_blank" rel="noopener">TikTok · @vitoria.epub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="aviso">
+  <div class="wrap">
+    <details>
+      <summary>Aviso de conteúdo (18+)</summary>
+      <div class="corpo">
+        <p><i>Variável Imprevista</i> é uma comédia romântica para leitores adultos. Este livro contém:</p>
+        <ul>
+          <li>cenas de sexo explícito;</li>
+          <li>linguagem adulta e palavrões;</li>
+          <li>consumo de álcool;</li>
+          <li>machismo e apropriação de crédito no ambiente de trabalho;</li>
+          <li>ansiedade e menções a terapia;</li>
+          <li>um familiar hospitalizado depois de um infarto.</li>
+        </ul>
+        <p>Se algum desses temas for sensível para você, cuide-se durante a leitura. <em>E, se não for: bem-vinda ao aquário.</em></p>
+      </div>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo logo-rodape" href="#topo"><img src="img/logo-pequena.png" alt="Variável Imprevista" width="360" height="186" loading="lazy"></a>
+    <span>ISBN 978-65-02-52611-8 · © 2026 Vitória Ferreira</span>
+  </div>
+</footer>
+
+<div class="barra-cel" id="barraCel">
+  <a class="btn btn-primario js-amazon" href="#" aria-disabled="true">Amazon · 30/11</a>
+  <a class="btn btn-secundario" href="https://www.skoob.com.br/pt/book/122718148" target="_blank" rel="noopener">Skoob</a>
+</div>
+
+<script>
+/* ======== CONFIGURAÇÃO ========
+   Quando o livro sair, cole aqui o link da Amazon e salve. O botão acende sozinho. */
+const AMAZON_URL = "";
+const LANCAMENTO = new Date("2026-11-30T00:00:00-03:00");
+/* Endereço do site (aparece na imagem do quiz). Troque quando tiver o link definitivo. */
+const SITE_URL = "";
+/* ============================== */
+
+document.documentElement.classList.add("js");
+const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Botões da Amazon */
+(function(){
+  const pronto = AMAZON_URL && Date.now() >= LANCAMENTO.getTime();
+  document.querySelectorAll(".js-amazon").forEach(a=>{
+    if(AMAZON_URL){
+      a.href = AMAZON_URL; a.target="_blank"; a.rel="noopener"; a.removeAttribute("aria-disabled");
+      a.textContent = a.closest(".barra-cel") ? "Amazon" : "Comprar na Amazon";
+    } else {
+      a.addEventListener("click", e=>{ e.preventDefault(); document.getElementById("contagem").scrollIntoView({behavior:reduz?"auto":"smooth",block:"center"}); });
+    }
+  });
+  if(AMAZON_URL){ const n=document.querySelector(".js-nota-amazon"); if(n) n.textContent = pronto ? "Já disponível em e-book na Amazon." : "Pré-venda aberta na Amazon. Entrega no dia 30/11."; }
+})();
+
+/* Contagem regressiva */
+(function(){
+  const pad = n=>String(n).padStart(2,"0");
+  const el = {d:cD,h:cH,m:cM,s:cS};
+  function tick(){
+    let ms = LANCAMENTO - Date.now();
+    if(ms <= 0){
+      document.getElementById("contagemNum").innerHTML = '<div style="grid-column:1/-1;text-align:left"><span class="pronto">status = "LANÇADO" ♡</span></div>';
+      return clearInterval(t);
+    }
+    const s = Math.floor(ms/1000);
+    el.d.textContent = pad(Math.floor(s/86400));
+    el.h.textContent = pad(Math.floor(s%86400/3600));
+    el.m.textContent = pad(Math.floor(s%3600/60));
+    el.s.textContent = pad(s%60);
+  }
+  const t = setInterval(tick,1000); tick();
+})();
+
+/* Código ao fundo (como na capa) */
+(function(){
+  const linhas = [
+    "class VariavelImprevista(Exception):","    pass","","class Parceria:","    def __init__(self, raquel, alistair):",
+    "        self.regras = []","        self.dias = 0","","    def quebrar(self, numero):","        regra = self.regras[numero - 1]",
+    "        print(f\"Regra {numero}: {regra.texto} ... ignorada\")","        regra.quebrada = True","        return regra","",
+    "def distancia(self):","    return self.posicao - self.outro.posicao","","BRACO_DE_DISTANCIA = 0.62  # metros","SABADO_NEVE = True","",
+    "def main():","    p = Parceria(\"Raquel\", \"Alistair\")","    while abs(p.distancia()) > BRACO_DE_DISTANCIA:","        p.dias += 1",
+    "    try:","        p.raquel.controlar(tudo)","    except VariavelImprevista:","        print(\"ah, não.\")","","if __name__ == \"__main__\":","    main()"
+  ];
+  const alvo = document.getElementById("codigoFundo");
+  let txt = ""; for(let i=0;i<60;i++){ txt += String(i+1).padStart(3," ") + "   " + linhas[i % linhas.length] + "\n"; }
+  alvo.textContent = txt;
+})();
+
+/* Livro 3D: inclina com o mouse / arrastar, vira ao toque */
+(function(){
+  const livro = document.getElementById("livro"), postit = document.getElementById("postit");
+  let virado=false, rx=4, ry=-22, arrastando=false, x0=0, moveu=false;
+  const aplica = ()=>{ if(!virado) livro.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg)`; };
+  function virar(){
+    virado=!virado; livro.classList.toggle("virado",virado); livro.setAttribute("aria-pressed",virado);
+    postit.textContent = virado ? "voltar pra capa ↺" : "toque pra virar ↻";
+    if(!virado) aplica();
+  }
+  if(!reduz && window.matchMedia("(hover:hover)").matches){
+    document.querySelector(".hero").addEventListener("pointermove",e=>{
+      if(virado) return; const r = livro.getBoundingClientRect();
+      const dx=(e.clientX-(r.left+r.width/2))/window.innerWidth, dy=(e.clientY-(r.top+r.height/2))/window.innerHeight;
+      ry = -22 + dx*40; rx = 4 - dy*18; livro.style.transition="transform .2s ease-out"; aplica();
+    });
+    document.querySelector(".hero").addEventListener("pointerleave",()=>{ if(virado) return; ry=-22; rx=4; livro.style.transition=""; aplica(); });
+  }
+  livro.addEventListener("pointerdown",e=>{ arrastando=true; moveu=false; x0=e.clientX; });
+  window.addEventListener("pointermove",e=>{
+    if(!arrastando||virado) return; const dx=e.clientX-x0;
+    if(Math.abs(dx)>6){ moveu=true; ry = Math.max(-60,Math.min(40,-22+dx*.4)); livro.style.transition="none"; aplica(); }
+  });
+  window.addEventListener("pointerup",()=>{ if(!arrastando) return; arrastando=false; livro.style.transition=""; if(moveu){ ry=-22; aplica(); } });
+  livro.addEventListener("click",()=>{ if(!moveu) virar(); });
+  livro.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); virar(); } });
+})();
+
+/* Quadro branco */
+(function(){
+  const regras = [
+    {t:"Nunca discordar na frente do cliente.", b:"A primeira regra. Escrita depois de os dois se contradizerem numa chamada com o cliente."},
+    {t:"Brigas só a portas fechadas.", b:"O aquário tem paredes de vidro. Detalhe importante."},
+    {t:"Crédito dividido. Com nome.", b:"Quem fez, com o nome de quem fez. Não “a equipe”. Não “a parceria”."},
+    {t:"Ninguém completa a frase do outro.", b:"Regra 4: quebrada (R). Melhor frase da apresentação (R).", q:true},
+    {t:"Proibido dizer “eu sei”.", b:"Ela escreveu enquanto falava."},
+    {t:"Quem ganhar uma briga a portas fechadas não comenta lá fora.", b:"Difícil para quem gosta de ter razão."},
+    {t:"Ninguém senta na cabeceira.", b:"Ele recusou a cabeceira já na primeira reunião."},
+    {t:"Café: quem pega o último faz o próximo.", b:"A regra mais respeitada do quadro. Talvez a única."},
+    {t:"Nada de “a gente” na frente do Omar.", b:"“A gente vem.” Ele disse. Na frente do Omar.", q:true},
+    {t:"Quando um tiver razão, o outro diz.", b:"Vetada por ela. Reescrita na letra dela às 23h10.", dela:true},
+    {t:"Um braço de distância.", b:"Suspensa “para fins de marketing”. Ele esticou o braço para medir.", q:true, dela:true}
+  ];
+  const lista = document.getElementById("listaRegras"), placar=document.getElementById("placar");
+  let chave = "vi-regras"; let salvas = [];
+  try{ salvas = JSON.parse(localStorage.getItem(chave)||"[]"); }catch(e){}
+  function atualizaPlacar(){
+    const n = lista.querySelectorAll(".regra.quebrada").length;
+    placar.textContent = `regras_quebradas = ${n} / ${regras.length}` + (n===regras.length ? "  # e agora?" : "");
+    try{ localStorage.setItem(chave, JSON.stringify([...lista.querySelectorAll(".regra")].map(li=>li.classList.contains("quebrada")))); }catch(e){}
+  }
+  regras.forEach((r,i)=>{
+    const li = document.createElement("li"); li.className = "regra" + (r.dela?" letra-dela":"");
+    li.innerHTML = `<button type="button" aria-expanded="false"><span class="n">${i+1}.</span><span class="t"></span></button><span class="bilhete"></span>`;
+    li.querySelector(".t").textContent = r.t; li.querySelector(".bilhete").textContent = "// " + r.b;
+    const btn = li.querySelector("button");
+    if(salvas[i]){ li.classList.add("quebrada"); btn.setAttribute("aria-expanded","true"); }
+    btn.addEventListener("click",()=>{ const q = li.classList.toggle("quebrada"); btn.setAttribute("aria-expanded",q); atualizaPlacar(); });
+    lista.appendChild(li);
+  });
+  document.getElementById("apagador").addEventListener("click",()=>{
+    lista.querySelectorAll(".regra").forEach(li=>{ li.classList.remove("quebrada"); li.querySelector("button").setAttribute("aria-expanded","false"); });
+    atualizaPlacar();
+  });
+  atualizaPlacar();
+})();
+
+/* Cartas dos personagens */
+document.querySelectorAll(".carta button").forEach(b=>b.addEventListener("click",()=>{
+  const c=b.closest(".carta"); const v=c.classList.toggle("virada"); b.setAttribute("aria-pressed",v);
+}));
+
+/* Galeria: perfil da Raquel */
+(function(){
+  const G = "img/galeria/";
+  const fotos = {
+    "3h12":               {cap:"cap. 1",  txt:"3h12. a fila refeita. ninguém pediu. (ele perguntou.)", alt:"Raquel de blazer vermelho, lápis na boca, trabalhando no notebook diante do quadro branco à noite."},
+    "aposta-20":          {cap:"cap. 1",  txt:"a Amelia já está contando os vinte dólares. ela que espere.", alt:"Amelia de pijama hospitalar segurando uma nota de 20 dólares; Raquel ao fundo revirando os olhos com uma caixa de cereal."},
+    "caneta-nos-dentes":  {cap:"cap. 3",  txt:"ele tira a tampa da caneta com os dentes. log de hábitos irritantes, mais uma entrada.", alt:"Selfie da Raquel revirando os olhos; atrás, Alistair morde a tampa de uma caneta diante do quadro branco cheio de anotações."},
+    "vestido-no-forno":   {cap:"cap. 8",  txt:"o vestido preto está DENTRO DO FORNO. a Amelia diz que foi “acidente”.", alt:"Raquel de vestido vermelho, indignada no espelho, apontando para o forno aberto onde a Amelia escondeu o vestido preto."},
+    "manutencao-gravata": {cap:"cap. 8",  txt:"manutenção. só isso.", alt:"Raquel de vestido vermelho endireitando a gravata de Alistair diante de um espelho dourado num salão de festa."},
+    "royal-york-sorriso": {cap:"cap. 8",  txt:"regra 11 suspensa para fins de marketing.", alt:"Raquel de vestido vermelho e Alistair de terno se olhando e sorrindo num salão com lustre."},
+    "linkedin-diane":     {cap:"cap. 9",  txt:"a foto inteira. a Interagge postou só metade de mim.", alt:"Post de rede profissional da investidora Diane Mercer com Raquel e Alistair na Noite dos Parceiros."},
+    "gala-azcorper":      {cap:"cap. 10", txt:"gala da AzCorper, mesa 4. no Royal York ele não desviou a mão.", alt:"Raquel de costas, de vestido preto com as costas abertas; Alistair a observa do outro lado do salão."},
+    "sete-musicas":       {cap:"cap. 33", txt:"sete músicas. ele não veio até mim.", alt:"Raquel dançando com uma tiara rosa; Alistair, no balcão do bar, olha para ela sorrindo.", spoiler:true},
+    "beijo":              {cap:"???",     txt:"isso não aconteceu. (aconteceu.)", alt:"Foto tremida de Raquel e Alistair se beijando num corredor com casacos pendurados.", spoiler:true}
+  };
+  const albuns = {
+    meninas:  {spoiler:true, itens:[
+      ["story-noite-meninas","noite das meninas. sem notebook."],
+      ["story-margaritas","a primeira (mentira)."],
+      ["story-vinho","a Amelia jura que esse é o último."],
+      ["story-noiva","uma despedida de solteira nos adotou."],
+      ["story-melhor-noite","olha quem estava no balcão."]
+    ]},
+    trabalho: {itens:[["3h12"],["caneta-nos-dentes"]]},
+    eventos:  {itens:[["manutencao-gravata"],["royal-york-sorriso"],["linkedin-diane"],["gala-azcorper"]]}
+  };
+  albuns.segredo = {itens:[["beijo"]]};
+  const ordemGrade = ["3h12","aposta-20","caneta-nos-dentes","vestido-no-forno","manutencao-gravata","royal-york-sorriso","linkedin-diane","gala-azcorper","sete-musicas"];
+  let spoilerOk = false;
+  try{ spoilerOk = localStorage.getItem("vi-spoiler")==="1"; }catch(e){}
+  const liberaSpoiler = ()=>{ spoilerOk=true; try{localStorage.setItem("vi-spoiler","1");}catch(e){} document.querySelectorAll(".foto-g.spoiler").forEach(b=>b.classList.add("liberada")); };
+
+  const itemDe = (id, legenda)=>{ const f=fotos[id]||{}; return {src:G+id+".jpg", txt:legenda||f.txt||"", cap:f.cap||"cap. 33 · melhores amigos", alt:f.alt||legenda||"", spoiler:!!f.spoiler}; };
+
+  const grade = document.getElementById("grade");
+  ordemGrade.forEach((id,i)=>{
+    const f=fotos[id]; const b=document.createElement("button"); b.type="button";
+    b.className="foto-g"+(f.spoiler?" spoiler":"")+(f.spoiler&&spoilerOk?" liberada":"");
+    b.setAttribute("aria-label", (f.spoiler?"Spoiler. ":"")+f.alt);
+    b.innerHTML=`<img src="${G+id}.jpg" alt="" loading="lazy"><span class="cap">${f.cap}</span>`;
+    b.addEventListener("click",()=>abrir(ordemGrade.map(x=>itemDe(x)), i));
+    grade.appendChild(b);
+  });
+  document.querySelectorAll(".destaque").forEach(b=>b.addEventListener("click",()=>{
+    const a=albuns[b.dataset.album];
+    abrir(a.itens.map(([id,l])=>{ const it=itemDe(id,l); if(a.spoiler) it.spoiler=true; return it; }),0);
+  }));
+
+  const visor=document.getElementById("visor"), img=document.getElementById("visorImg"), leg=document.getElementById("visorLegenda"),
+        cont=document.getElementById("visorCont"), palco=document.getElementById("visorPalco");
+  let lista=[], idx=0, origemFoco=null;
+  function mostra(){
+    const it=lista[idx];
+    if(it.spoiler && !spoilerOk){
+      img.hidden=true; leg.innerHTML="";
+      let av=palco.querySelector(".aviso-spoiler");
+      if(!av){ av=document.createElement("div"); av.className="aviso-spoiler"; palco.appendChild(av); }
+      av.hidden=false;
+      av.innerHTML=`<h3>Spoiler à frente</h3><p>Essas fotos são de cenas do fim do livro. Se ainda não leu, talvez seja melhor esperar.</p><div class="acoes-s"><button class="btn btn-secundario" type="button" data-s="ver">Ver mesmo assim</button><button class="btn btn-primario" type="button" data-s="sair">Prefiro esperar</button></div>`;
+      av.querySelector('[data-s="ver"]').onclick=()=>{ liberaSpoiler(); mostra(); };
+      av.querySelector('[data-s="sair"]').onclick=fechar;
+      av.querySelector('[data-s="ver"]').focus();
+    } else {
+      const av=palco.querySelector(".aviso-spoiler"); if(av) av.hidden=true;
+      img.hidden=false; img.src=it.src; img.alt=it.alt;
+      leg.innerHTML=`<span class="cap-tag"></span><span class="t"></span>`;
+      leg.querySelector(".cap-tag").textContent=it.cap; leg.querySelector(".t").textContent=it.txt;
+    }
+    cont.textContent=`${idx+1} / ${lista.length}`;
+  }
+  function abrir(l,i){ lista=l; idx=i; origemFoco=document.activeElement; visor.hidden=false; document.body.style.overflow="hidden"; mostra(); document.getElementById("visorFechar").focus(); }
+  function fechar(){ visor.hidden=true; document.body.style.overflow=""; if(origemFoco) origemFoco.focus(); }
+  const passo=d=>{ idx=(idx+d+lista.length)%lista.length; mostra(); };
+  document.getElementById("visorFechar").onclick=fechar;
+  document.getElementById("visorAnt").onclick=()=>passo(-1);
+  document.getElementById("visorProx").onclick=()=>passo(1);
+  visor.addEventListener("click",e=>{ if(e.target===visor) fechar(); });
+  img.addEventListener("click",e=>{ const r=img.getBoundingClientRect(); passo(e.clientX < r.left+r.width/3 ? -1 : 1); });
+  document.addEventListener("keydown",e=>{ if(visor.hidden) return; if(e.key==="Escape") fechar(); if(e.key==="ArrowRight") passo(1); if(e.key==="ArrowLeft") passo(-1); });
+  let x0=null;
+  visor.addEventListener("touchstart",e=>{ x0=e.touches[0].clientX; },{passive:true});
+  visor.addEventListener("touchend",e=>{ if(x0===null) return; const dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>50 && !img.hidden) passo(dx<0?1:-1); x0=null; });
+})();
+
+/* Quiz: qual personagem é você */
+(function(){
+  const P = {
+    R:{nome:"Raquel Queiroz", curto:"Raquel",
+       txt:"Você constrói a vida com precisão, trabalha demais e não deixa ninguém levar o crédito do que é seu. Confia pouco, mas quando confia é para sempre, e ainda guarda um prato no jantar de domingo.",
+       frase:"Confiro três vezes.",
+       attr:[["controle",0.98],["paciencia",0.12],["commits_depois_da_meia_noite",0.91]],
+       alerta:"sua variável imprevista provavelmente já tem nome."},
+    A:{nome:"Alistair Ames", curto:"Alistair",
+       txt:"Você observa antes de falar, anota o que ninguém percebe e prefere ter razão em silêncio. Mantém uma distância confortável do que não sabe explicar. Até o dia em que não consegue mais.",
+       frase:"O modelo é meu. O botão é dela.",
+       attr:[["observacao",0.97],["cadernos_preenchidos",0.88],["sorriso_irritantemente_calmo",1.00]],
+       alerta:"alguém aí tem um log dos seus hábitos irritantes."},
+    M:{nome:"Amelia", curto:"Amelia",
+       txt:"Você é quem senta à mesa de uma desconhecida chorando num café e resolve a vida dela. Aposta no amor dos outros, escolhe o vestido certo (e esconde o errado no forno).",
+       frase:"Hoje você bebe e dança. Amanhã você confere três vezes.",
+       attr:[["intuicao",0.99],["apostas_ganhas",0.95],["taxa_de_mora",0.20]],
+       alerta:"você já sabia o final antes de todo mundo."},
+    D:{nome:"Dan", curto:"Dan",
+       txt:"Você é o amigo que diz o que ninguém quer ouvir, na hora certa. Dirige na volta, escuta sem julgar e manda fechar o notebook quando já passou da hora. Todo mundo precisa de um Dan.",
+       frase:"Conta tudo antes que alguém conte por você.",
+       attr:[["sinceridade",0.96],["caronas_dadas",0.90],["paciencia_com_o_ali",0.73]],
+       alerta:"sem você, essa história teria uns dez capítulos a mais."}
+  };
+  const Q = [
+    {p:"Alguém leva o crédito pelo seu trabalho numa reunião. Você…", o:[
+      ["R","corrige na hora, com dados, sem levantar a voz."],
+      ["A","espera sua vez de falar e devolve o crédito com nome e sobrenome."],
+      ["M","aposta vinte dólares que essa pessoa vai se arrepender."],
+      ["D","fica quieto na reunião e depois fala a verdade no café."]]},
+    {p:"Sexta-feira, 23h47. Onde você está?", o:[
+      ["R","refazendo uma coisa que já estava pronta. Só para conferir."],
+      ["A","escrevendo um e-mail com a pergunta que ninguém fez ainda."],
+      ["M","saindo de um plantão, faminta e com fofoca nova."],
+      ["D","dirigindo de volta, levando todo mundo para casa."]]},
+    {p:"Sua arma secreta é…", o:[
+      ["R","uma lista de regras num quadro branco."],
+      ["A","um caderno preto, um lápis e uma memória que não esquece nada."],
+      ["M","saber o que as pessoas sentem antes delas mesmas."],
+      ["D","a verdade, sem açúcar."]]},
+    {p:"Num evento chique, você é quem…", o:[
+      ["R","conta quantos segundos a mão de alguém fica no braço de outra pessoa."],
+      ["A","recusa a cabeceira e acaba na varanda olhando a neve."],
+      ["M","escolheu a roupa de todo mundo, inclusive a sua."],
+      ["D","lembra onde estacionou e não deixa ninguém dirigir depois do vinho."]]},
+    {p:"Seu jeito de dizer “eu gosto de você”:", o:[
+      ["R","guardar um prato para a pessoa no jantar de domingo."],
+      ["A","dar o crédito a ela em público, na frente de quem importa."],
+      ["M","apostar que vai dar certo. E cobrar com juros."],
+      ["D","falar o que a pessoa precisa ouvir, mesmo que doa."]]},
+    {p:"Qual dessas frases poderia ser sua?", o:[
+      ["R","“Isso é débito. Você paga o próximo.”"],
+      ["A","“Eu teria feito igual.”"],
+      ["M","“Eu avisei. Me deve vinte.”"],
+      ["D","“Fecha o notebook.”"]]}
+  ];
+  const caixa = document.getElementById("quizCaixa");
+  let resp = [], atual = 0, ordem = Q.map(q=>q.o.map((_,i)=>i).sort(()=>Math.random()-.5));
+
+  function inicio(){
+    caixa.innerHTML = `<p class="quiz-pergunta" style="margin-bottom:8px">Raquel, Alistair, Amelia ou Dan?</p>
+      <p style="margin:0 0 18px">Responda com sinceridade. O Alistair vai anotar tudo de qualquer jeito.</p>
+      <button class="btn btn-primario" type="button" id="quizComecar">Começar o quiz</button>`;
+    caixa.querySelector("#quizComecar").onclick = ()=>{ resp=[]; atual=0; pergunta(true); };
+  }
+  function pergunta(foco){
+    const q = Q[atual];
+    caixa.innerHTML = `<div class="quiz-topo"><span>pergunta ${atual+1} de ${Q.length}</span><button class="quiz-voltar" type="button" ${atual?"":"disabled"}>‹ voltar</button></div>
+      <div class="barra"><i style="width:${(atual)/Q.length*100}%"></i></div>
+      <p class="quiz-pergunta"></p><div class="opcoes"></div>`;
+    caixa.querySelector(".quiz-pergunta").textContent = q.p;
+    const box = caixa.querySelector(".opcoes");
+    ordem[atual].forEach((i,k)=>{
+      const [who,t] = q.o[i];
+      const b = document.createElement("button"); b.type="button"; b.className="opcao"+(resp[atual]===who?" escolhida":"");
+      b.innerHTML = `<span class="letra">${"abcd"[k]})</span><span></span>`; b.lastChild.textContent = t;
+      b.onclick = ()=>{ resp[atual]=who; b.classList.add("escolhida"); setTimeout(()=>{ atual++; atual<Q.length ? pergunta(true) : resultado(); }, reduz?0:220); };
+      box.appendChild(b);
+    });
+    caixa.querySelector(".quiz-voltar").onclick = ()=>{ if(atual){ atual--; pergunta(true);} };
+    requestAnimationFrame(()=>caixa.querySelector(".barra i").style.width = ((atual)/Q.length*100)+"%");
+    if(foco) box.querySelector(".opcao").focus({preventScroll:true});
+  }
+  function resultado(){
+    const cont = {R:0,A:0,M:0,D:0}; resp.forEach(r=>cont[r]++);
+    const max = Math.max(...Object.values(cont));
+    const empates = Object.keys(cont).filter(k=>cont[k]===max);
+    const k = empates.includes(resp[resp.length-1]) ? resp[resp.length-1] : empates[0];
+    const p = P[k], pct = Math.round(cont[k]/Q.length*100);
+    try{ localStorage.setItem("vi-quiz",k); }catch(e){}
+    caixa.innerHTML = `<div class="resultado">
+      <div>
+        <span class="eu-sou">resultado.personagem =</span>
+        <h3></h3>
+        <p class="pct">${pct}% de compatibilidade</p>
+        <p class="r-txt"></p>
+        <blockquote class="r-frase"></blockquote>
+        <div class="atributos">${p.attr.map(([a,v])=>`${a} = <b>${v.toFixed(2)}</b>`).join("<br>")}<br><span style="color:#8C9AC6"># aviso: ${p.alerta}</span></div>
+        <div class="acoes-q">
+          <button class="btn btn-primario" type="button" id="qCompart">Compartilhar nos stories</button>
+          <button class="btn btn-secundario" type="button" id="qBaixar">Baixar imagem</button>
+          <button class="btn btn-secundario" type="button" id="qRefazer">Refazer</button>
+        </div>
+        <div class="quiz-msg" id="qMsg"></div>
+      </div>
+      <canvas class="preview-story" id="qCanvas" width="1080" height="1920" aria-label="Imagem do resultado para compartilhar"></canvas>
+    </div>`;
+    caixa.querySelector("h3").textContent = p.nome;
+    caixa.querySelector(".r-txt").textContent = p.txt;
+    caixa.querySelector(".r-frase").textContent = "“"+p.frase+"”";
+    const cv = caixa.querySelector("#qCanvas"), msg = caixa.querySelector("#qMsg");
+    desenha(cv,p,pct);
+    caixa.querySelector("#qRefazer").onclick = ()=>{ ordem = Q.map(q=>q.o.map((_,i)=>i).sort(()=>Math.random()-.5)); resp=[]; atual=0; pergunta(true); };
+    const nomeArq = `variavel-imprevista-${p.curto.toLowerCase()}.png`;
+    const textoComp = `Fiz o quiz de Variável Imprevista e eu sou ${p.nome}! Qual personagem é você?` + (SITE_URL?` ${SITE_URL}`:"");
+    function blob(){ return new Promise((ok,err)=>{ try{ cv.toBlob(b=>b?ok(b):err(new Error("sem imagem")),"image/png"); }catch(e){ err(e); } }); }
+    function baixar(b){ const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download=nomeArq; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),2000); }
+    caixa.querySelector("#qBaixar").onclick = async ()=>{
+      try{ baixar(await blob()); msg.textContent="Imagem salva. Agora é só postar."; }
+      catch(e){ msg.textContent="Não deu para gerar a imagem aqui. Tire um print do resultado."; }
+    };
+    caixa.querySelector("#qCompart").onclick = async ()=>{
+      try{
+        const b = await blob(); const f = new File([b], nomeArq, {type:"image/png"});
+        if(navigator.canShare && navigator.canShare({files:[f]})){ await navigator.share({files:[f], text:textoComp}); msg.textContent=""; }
+        else { baixar(b); msg.textContent="Seu navegador não compartilha direto. A imagem foi baixada: poste nos stories e marque @vitoria.epub."; }
+      }catch(e){ if(e && e.name==="AbortError") return; msg.textContent="Não deu para compartilhar daqui. Use “Baixar imagem” ou tire um print."; }
+    };
+    caixa.scrollIntoView({behavior:reduz?"auto":"smooth",block:"start"});
+  }
+
+  /* Imagem 1080x1920 para stories */
+  const imgs = {};
+  function carrega(src){ return imgs[src] || (imgs[src] = new Promise(ok=>{ const i=new Image(); i.onload=()=>ok(i); i.onerror=()=>ok(null); i.src=src; })); }
+  function quebra(ctx, txt, x, y, larg, alt, medir){
+    const pal = txt.split(" "); let linha=""; const linhas=[];
+    pal.forEach(w=>{ const t = linha?linha+" "+w:w; if(ctx.measureText(t).width>larg && linha){ linhas.push(linha); linha=w; } else linha=t; });
+    if(linha) linhas.push(linha);
+    if(!medir) linhas.forEach((l,i)=>ctx.fillText(l,x,y+i*alt)); return y+linhas.length*alt;
+  }
+  async function desenha(cv,p,pct){
+    try{ await document.fonts.ready; }catch(e){}
+    const [logo,capa] = await Promise.all([carrega("img/logo.png"),carrega("img/capa.jpg")]);
+    const c = cv.getContext("2d"), W=1080, H=1920;
+    c.fillStyle="#F7C65A"; c.fillRect(0,0,W/2,H); c.fillStyle="#F29A4E"; c.fillRect(W/2,0,W/2,H);
+    c.font="400 30px 'JetBrains Mono', monospace"; c.fillStyle="rgba(21,33,74,.10)";
+    const cod=["class VariavelImprevista(Exception):","    pass","def main():","    p = Parceria('Raquel', 'Alistair')","    try:","        p.raquel.controlar(tudo)","    except VariavelImprevista:","        print('ah, não.')","BRACO_DE_DISTANCIA = 0.62","SABADO_NEVE = True"];
+    for(let i=0;i<40;i++) c.fillText(String(i+1).padStart(2," ")+"  "+cod[i%cod.length], 40, 60+i*48);
+    if(logo){ const lw=640, lh=logo.height*lw/logo.width; c.drawImage(logo,(W-lw)/2,110,lw,lh); }
+    // cartão
+    const x=80, y=520, w=W-160;
+    const F={nome:"400 120px 'Kaushan Script', cursive", txt:"400 38px 'Literata', Georgia, serif", fr:"italic 400 40px 'Literata', Georgia, serif"};
+    c.font=F.nome; let my=quebra(c,p.nome,x+56,y+220,w-112,120,true);
+    c.font=F.txt; my=quebra(c,p.txt,x+56,my+90,w-112,56,true);
+    c.font=F.fr; my=quebra(c,"“"+p.frase+"”",x+90,my+60,w-150,54,true);
+    const h=Math.min(1040, my - y + 30);
+    c.fillStyle="#15214A"; c.fillRect(x+16,y+16,w,h);
+    c.fillStyle="#FFFBF1"; c.fillRect(x,y,w,h); c.strokeStyle="#15214A"; c.lineWidth=4; c.strokeRect(x,y,w,h);
+    c.fillStyle="#A8123E"; c.font="600 30px 'JetBrains Mono', monospace"; c.fillText("resultado.personagem =", x+56, y+90);
+    c.fillStyle="#15214A"; c.font="400 120px 'Kaushan Script', cursive";
+    let ny = quebra(c, p.nome, x+56, y+220, w-112, 120);
+    c.fillStyle="#5E5670"; c.font="600 30px 'JetBrains Mono', monospace"; c.fillText(pct+"% de compatibilidade", x+56, ny+10);
+    c.fillStyle="#2A2440"; c.font="400 38px 'Literata', Georgia, serif";
+    let ty = quebra(c, p.txt, x+56, ny+90, w-112, 56);
+    c.font=F.fr; const fy=quebra(c, "“"+p.frase+"”", x+90, ty+60, w-150, 54, true);
+    c.fillStyle="#A8123E"; c.fillRect(x+56, ty+18, 6, fy-ty-30);
+    c.fillStyle="#15214A"; quebra(c, "“"+p.frase+"”", x+90, ty+60, w-150, 54);
+    // rodapé
+    if(capa){ const cw=210, ch=315; c.save(); c.shadowColor="rgba(0,0,0,.3)"; c.shadowBlur=30; c.shadowOffsetY=12; c.drawImage(capa,80,1600,cw,ch); c.restore(); }
+    c.fillStyle="#15214A"; c.font="800 50px 'Bricolage Grotesque', sans-serif"; c.fillText("E você, quem é?", 330, 1680);
+    c.font="400 32px 'Literata', Georgia, serif"; c.fillText("Faça o quiz de Variável Imprevista", 330, 1735);
+    c.font="600 30px 'JetBrains Mono', monospace"; c.fillStyle="#A8123E";
+    c.fillText(SITE_URL ? SITE_URL.replace(/^https?:\/\//,"") : "lançamento 30/11", 330, 1795);
+    c.fillStyle="#15214A"; c.fillText("@vitoria.epub", 330, 1845);
+  }
+  inicio();
+})();
+
+/* Vinil gira quando a playlist entra na tela */
+(function(){
+  const box=document.getElementById("vinilBox"); if(!("IntersectionObserver" in window)) return;
+  new IntersectionObserver(es=>es.forEach(e=>box.classList.toggle("tocando",e.isIntersecting)),{threshold:.4}).observe(box);
+})();
+
+/* Estrelas de brincadeira antes de ir ao Skoob */
+(function(){
+  const box=document.getElementById("estrelas"), fb=document.getElementById("feedback");
+  const frases=["hmm, o Alistair vai anotar isso.","a Raquel quer um relatório do bug.","variável aceitável.","quase perfeito. quase.","regra 10: você tem razão. ♡"];
+  const bs=[];
+  for(let i=1;i<=5;i++){
+    const b=document.createElement("button"); b.type="button"; b.textContent="★"; b.setAttribute("aria-label",i+" estrela"+(i>1?"s":""));
+    b.addEventListener("click",()=>{ bs.forEach((x,j)=>x.classList.toggle("off",j>=i)); fb.textContent=frases[i-1]+" agora deixa isso no Skoob?"; });
+    bs.push(b); box.appendChild(b);
+  }
+})();
+
+/* Revelar ao rolar + barra do celular */
+(function(){
+  const els=document.querySelectorAll(".revela");
+  if(!("IntersectionObserver" in window) || reduz){ els.forEach(e=>e.classList.add("ok")); }
+  else{
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("ok"); io.unobserve(e.target);} }),{threshold:.12});
+    els.forEach(e=>io.observe(e));
+  }
+  const barra=document.getElementById("barraCel"), hero=document.getElementById("topo");
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(es=>es.forEach(e=>barra.classList.toggle("visivel",!e.isIntersecting)),{threshold:0}).observe(hero);
+  }
+})();
+</script>
+</body>
+</html>
